@@ -62,9 +62,13 @@ sources:
       - "Oleg V. Borodin"
     id: "doi:10.1515/crll.1989.394.180"
     type: "paper"
-    location: "J. Reine Angew. Math. 394 (1989) 180–185"
-    relationship: "background"
-    note: "Kotzig's theorem for planar graphs of minimum degree at least three (Erdős's conjecture), in a stronger form."
+    location: "J. Reine Angew. Math. 394 (1989) 180–185: the light edge theorem for planar graphs of minimum degree at least three."
+    relationship: "formalizes"
+    note: >-
+      Borodin proves Kotzig's theorem for planar graphs of minimum degree at least three (conjectured
+      by Erdős), in a stronger form. The weight bound 13 is formalized as kotzig_borodin; the stronger
+      alternative is not. The Lean proof is not Borodin's: it is the discharging argument of
+      Cranston–West (above), run on the rotation system with face charges.
     license: "all rights reserved"
     author_endorsement: "n/a"
   - title: "Über den kartographischen Vierfarbensatz"
@@ -72,9 +76,11 @@ sources:
       - "Paul Wernicke"
     id: "doi:10.1007/BF01444968"
     type: "paper"
-    location: "Math. Ann. 58 (1904) 413–426"
-    relationship: "background"
-    note: "A planar graph of minimum degree five has a 5-vertex adjacent to a 5- or 6-vertex; obtained here as a corollary."
+    location: "Math. Ann. 58 (1904) 413–426: a planar graph of minimum degree five has a 5-vertex adjacent to a 5- or 6-vertex."
+    relationship: "formalizes"
+    note: >-
+      Wernicke's theorem is formalized as wernicke. The Lean proof is not Wernicke's: it is obtained as
+      a corollary of the weight bound 11 for minimum degree at least four (light_edge_minDegree_four).
     license: "unknown"
     author_endorsement: "n/a"
 

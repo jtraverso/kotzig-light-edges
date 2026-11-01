@@ -1,0 +1,13 @@
+{
+  "challenge_module": "KotzigChallenge",
+  "solution_module": "KotzigSolution",
+  "theorem_names": [
+    "KotzigTheorem.kotzig_borodin",
+    "KotzigTheorem.light_edge_minDegree_four",
+    "KotzigTheorem.kotzig",
+    "KotzigTheorem.wernicke"
+  ],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}

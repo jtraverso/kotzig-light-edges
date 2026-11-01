@@ -1,0 +1,28 @@
+name = "kotzig"
+version = "0.1.0"
+defaultTargets = ["Kotzig", "KotzigChallenge", "KotzigSolution"]
+requiresModuleSystem = true
+
+[leanOptions]
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0-rc3"
+
+[[require]]
+name = "kuratowski"
+git = "https://github.com/jtraverso/kuratowski"
+rev = "696ec897a9b91933037767d897670aa30ba3683a"
+
+[[lean_lib]]
+name = "Kotzig"
+globs = ["Kotzig.+"]
+
+[[lean_lib]]
+name = "KotzigChallenge"
+
+[[lean_lib]]
+name = "KotzigSolution"

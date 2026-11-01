@@ -1,0 +1,148 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Kotzig's theorem on light edges of planar graphs"
+  description: >-
+    A Lean 4 / Mathlib formalization of Kotzig's theorem on light edges and its relatives, for finite
+    simple graphs with the combinatorial planarity (genus-zero rotation systems) of the registered
+    entry Kuratowski's theorem. The weight of an edge uv is deg u + deg v. A planar graph of minimum
+    degree at least three has an edge of weight at most 13 (kotzig_borodin; the form without
+    3-connectivity conjectured by Erdős and proved by Borodin); a planar graph of minimum degree at
+    least four has an edge of weight at most 11 (light_edge_minDegree_four); Kotzig's theorem
+    (1955): a 3-connected planar graph has an edge of weight at most 13, and at most 11 if it has no
+    vertex of degree three (kotzig); Wernicke's theorem (1904): a planar graph of minimum degree at
+    least five has a vertex of degree five adjacent to a vertex of degree at most six (wernicke).
+    Four statements. The proof is a discharging argument carried out directly on the rotation
+    system, without triangulating.
+  authors:
+    - "Juan Pablo Traverso Gianini"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Juan Pablo Traverso Gianini"
+
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C10", "05C07", "52B10"]
+
+sources:
+  - title: "Príspevok k teórii eulerovských polyédrov (Contribution to the theory of Eulerian polyhedra)"
+    authors:
+      - "Anton Kotzig"
+    id: "Mat.-Fyz. Časopis Slovensk. Akad. Vied 5 (1955) 101–113"
+    type: "paper"
+    location: "Mat.-Fyz. Časopis Slovensk. Akad. Vied 5 (1955) 101–113 (in Slovak): the light edge theorem for 3-connected planar graphs."
+    relationship: "formalizes"
+    note: >-
+      The statement is formalized; the proof is not Kotzig's. It follows the discharging proof of
+      the source below, rearranged to avoid triangulating.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "An introduction to the discharging method via graph coloring"
+    authors:
+      - "Daniel W. Cranston"
+      - "Douglas B. West"
+    id: "arXiv:1306.4434"
+    type: "preprint"
+    location: >-
+      arXiv:1306.4434v2, Section 3.1 (light edges), Lemma 3.2 and its proof; published in Discrete
+      Math. 340 (2017) 766–793, doi:10.1016/j.disc.2016.11.022.
+    relationship: "formalizes"
+    note: >-
+      The proof adds chords to reach a triangulated multigraph and then discharges from small vertices.
+      Here the chords are replaced by face charges (each face of length ℓ gives 1 to every corner
+      of a big vertex between two small neighbours, at most ℓ/2 of them and only when ℓ ≥ 4), so the
+      argument runs on the simple graph's rotation system. Only the conclusions "weight ≤ 13" and,
+      without 3-vertices, "weight ≤ 11" are formalized, not the 4-cycle alternative of Lemma 3.2.
+      The formalization is by a different author; the article's authors were not involved.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "On the total coloring of planar graphs"
+    authors:
+      - "Oleg V. Borodin"
+    id: "doi:10.1515/crll.1989.394.180"
+    type: "paper"
+    location: "J. Reine Angew. Math. 394 (1989) 180–185"
+    relationship: "background"
+    note: "Kotzig's theorem for planar graphs of minimum degree at least three (Erdős's conjecture), in a stronger form."
+    license: "all rights reserved"
+    author_endorsement: "n/a"
+  - title: "Über den kartographischen Vierfarbensatz"
+    authors:
+      - "Paul Wernicke"
+    id: "doi:10.1007/BF01444968"
+    type: "paper"
+    location: "Math. Ann. 58 (1904) 413–426"
+    relationship: "background"
+    note: "A planar graph of minimum degree five has a 5-vertex adjacent to a 5- or 6-vertex; obtained here as a corollary."
+    license: "unknown"
+    author_endorsement: "n/a"
+
+related_formalizations:
+  - id: "PALOMAR-2026-10-15-000018 (jtraverso/kuratowski @ 696ec89)"
+    relationship: "builds-on"
+    note: >-
+      Pinned dependency. The definitions of planarity (numClasses to IsPlanar) are copied verbatim
+      from its Challenge, and its library supplies plane maps, the face permutation and Euler's
+      formula (LeanPool.K5MinorFreeChoosability.PlaneMap.euler).
+
+status:
+  scope: >-
+    The four statements are proved for every finite simple graph. Known gaps relative to the
+    sources: the sharpness examples (13 and 11 are attained) and the 4-cycle alternative of
+    Borodin's stronger form are not formalized; the Heffter–Edmonds–Ringel correspondence between
+    genus-zero rotation systems and sphere embeddings is not formalized (as in the Kuratowski entry).
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5"]
+      framework: "Claude Code (Anthropic)"
+      tool_setup: >-
+        Designed the triangulation-free discharging, wrote the whole Lean development (Kotzig/), the
+        Challenge/Solution pair and the packaging under the author's direction. Checked with a local
+        build, a comparison of the elaborated Challenge and Solution statements and definitions
+        (pp.all), and #print axioms (Lean v4.35.0-rc3, Mathlib
+        c55e6e786f49471c72fbddbec5415808896aec1e).
+      cost:
+        wall_time: "a few hours"
+        spend_usd: "subscription-based"
+        hardware: "local machine"
+      prompting_notes: "Natural-language instructions in Spanish, directed by the author."
+  spend_usd: "not tracked"
+  notes: >-
+    The Lean development is AI-written under the author's direction and mechanically verified: no
+    sorry, axioms limited to propext, Classical.choice and Quot.sound, identical elaborated
+    statements and definitions in the Challenge and the Solution.
+
+fidelity:
+  divergences: >-
+    Graphs are Mathlib SimpleGraphs on a finite vertex type; degrees are Mathlib's degree. Planarity
+    is the existence of a genus-zero rotation system (the registered Kuratowski entry's definition)
+    rather than a topological embedding. 3-connectivity is stated as: at least four vertices, and the
+    graph induced on the complement of any set of at most two vertices is connected. The statements
+    for minimum degree three, four and five assume a nonempty vertex type (otherwise there is no
+    edge). Kotzig's 1955 statement concerns convex 3-polytopes, i.e. 3-connected planar graphs.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "Claude Opus 5.5 (AI agent in Claude Code, acting for the author)"
+  notes: >-
+    Agent review by Claude Opus 5.5, distinct from the mechanical verification: the agent checked
+    the statements and the definitions against the sources. No independent human review of the
+    formalization has been performed.
+
+alignment:
+  namespace: "KotzigTheorem"
+  statements:
+    - {source: "Borodin 1989 / Cranston–West Lemma 3.2: δ ≥ 3 gives an edge of weight ≤ 13", lean: "KotzigTheorem.kotzig_borodin", module: "KotzigChallenge", status: "proved"}
+    - {source: "δ ≥ 4 gives an edge of weight ≤ 11", lean: "KotzigTheorem.light_edge_minDegree_four", module: "KotzigChallenge", status: "proved"}
+    - {source: "Kotzig 1955", lean: "KotzigTheorem.kotzig", module: "KotzigChallenge", status: "proved"}
+    - {source: "Wernicke 1904", lean: "KotzigTheorem.wernicke", module: "KotzigChallenge", status: "proved"}
+
+acknowledgements: >-
+  Mathlib and the Lean community.
